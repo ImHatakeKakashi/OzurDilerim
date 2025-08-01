@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Barışalım mı?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1, h2 {
+      color: #d6336c;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #4CAF50;
+      color: white;
+      z-index: 1;
+      position: relative;
+    }
+
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #fullScreenYes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #4CAF50;
+      color: white;
+      width: 100vw;
+      height: 100vh;
+      font-size: 64px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    #finalMessage {
+      font-size: 28px;
+      margin-top: 30px;
+      color: #333;
+    }
+
+    #titles {
+      transition: opacity 0.3s ease;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="titles">
+    <h1 id="mainText">Seni üzdüğüm için özür dilerim.</h1>
+    <h2 id="questionText">Barışalım mı?</h2>
+  </div>
+
+  <div id="buttons">
+    <button id="yesBtn">Evet</button>
+    <button id="noBtn">Hayır</button>
+  </div>
+
+  <div id="fullScreenYes">EVET</div>
+  <div id="finalMessage"></div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const fullScreenYes = document.getElementById('fullScreenYes');
+    const finalMessage = document.getElementById('finalMessage');
+    const mainText = document.getElementById('mainText');
+    const questionText = document.getElementById('questionText');
+    const buttonsDiv = document.getElementById('buttons');
+    const titlesDiv = document.getElementById('titles');
+
+    let growSize = 18;
+
+    noBtn.addEventListener('click', () => {
+      growSize += 20;
+      yesBtn.style.fontSize = `${growSize}px`;
+      yesBtn.style.padding = `${growSize / 2}px ${growSize}px`;
+
+      // Her tıklamada yazılar yenileniyor
+      mainText.textContent = "Ama gerçekten üzgünüm...";
+      questionText.textContent = "Yine de barışalım mı?";
+
+      if (growSize >= 200) {
+        fullScreenYes.style.display = 'flex';
+        titlesDiv.classList.add('hidden'); // Yazıları sakla
+      }
+    });
+
+    function showFinalMessage() {
+      fullScreenYes.style.display = 'none';
+      buttonsDiv.classList.add('hidden'); // Butonları gizle
+      titlesDiv.classList.remove('hidden');
+      mainText.textContent = "Evet diyeceğini biliyordum.";
+      questionText.textContent = "Teşekkür ederim ❤️";
+    }
+
+    yesBtn.addEventListener('click', showFinalMessage);
+    fullScreenYes.addEventListener('click', showFinalMessage);
+  </script>
+</body>
+</html>
