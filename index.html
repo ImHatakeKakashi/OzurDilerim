@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Özür</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      position: relative;
+    }
+
+    button {
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    #yes {
+      background-color: green;
+      padding: 15px 40px;
+    }
+
+    #no {
+      background-color: red;
+      padding: 15px 40px;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="content">
+    <h1>
+      Seni Üzdüğüm İçin Özür Dilerim  
+      <br>Seni Seviyorum  
+      <br>BARIŞALIM MI?
+    </h1>
+
+    <div class="buttons">
+      <button id="yes">EVET</button>
+      <button id="no">HAYIR</button>
+    </div>
+  </div>
+
+  <script>
+    let yesScale = 1;
+    let noMove = 0;
+
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const content = document.getElementById("content");
+
+    noBtn.addEventListener("click", () => {
+      // EVET daha hızlı büyüsün
+      yesScale += 0.8;
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      // HAYIR sağa doğru kaymaya başlasın
+      noMove += 30;
+      noBtn.style.transform = `translateX(${noMove}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      content.innerHTML = `
+        <h1>
+          Beni Affedeceğini Biliyordum  
+          <br>Seni Çok Seviyorum Adelim ❤️
+        </h1>
+      `;
+    });
+  </script>
+
+</body>
+</html>
